@@ -28,7 +28,16 @@ $(document).ready(function() {
                     },
 
                     success: function(data) {
-                        //alert(data);
+                        var receivedData = JSON.parse(data);
+                        $('#currencyHistoryChart').html('');
+                        Morris.Line({
+                            element: 'currencyHistoryChart',
+
+                            data: receivedData,
+                            xkey: "t",
+                            ykeys: "p",
+                            labels: "P",
+                        });
                     }
                 });
             }

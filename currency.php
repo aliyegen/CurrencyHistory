@@ -34,8 +34,10 @@
 
             //get pairing data in decoding data
             $pair = $result->rates->$targetCurrency;
-            $dataSet[$date] = sprintf('%.3f',floatval($pair));//get pairing data float datatype and format string
-              
+            
+            //create dataset for morris chart
+            $dataSet[] = array("t"=>$date, 
+            "p"=>sprintf('%.3f',floatval($pair))); //the pair data is float. format string for 3 digits after point  
         }
         //send dataset
         echo json_encode($dataSet);
