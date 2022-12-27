@@ -1,21 +1,41 @@
-var data = [
-    { y: '2006', a: 100 },
-    { y: '2007', a: 75 },
-    { y: '2008', a: 50 },
-    { y: '2009', a: 75 },
-    { y: '2010', a: 50 },
-    { y: '2011', a: 7 },
-    { y: '2012', a: 100 }
-];
+$(document).ready(function() {
+    $.chart = {
+        currencyList: function() {
+            $.ajax({
+                type: "POST",
+                url: "currency.php",
+                data: { request: "CurrencyList" },
 
-Morris.Bar({
-    element: 'currencyHistoryChart',
+                success: function(data) {
+                    var currencies = JSON.parse(data);
+                    $.each(currencies, function(key, value) {
+                        $('#currencyTo').append('<option value="' + key + '">' + value + '</option>');
+                    });
+                }
+            })
+        },
 
-    data: data,
-    // Y-eksenini oluşturan öznitelik
-    xkey: 'y',
-    // Dikey çubukları oluşturan öznitelikler
-    ykeys: ['a', 'b'],
-    // Dikey çubukların etiketleri
-    labels: ['Serie A', 'Serie B']
-});
+        sendReq: function() {
+            if ($('#currencyFrom').val() != "Select source currency" && $('#currencyTo').val() != "Select target currency") {
+                $.ajax({
+                    type: "POST",
+                    url: "currency.php",
+                    data: {
+                        request: "Pairing",
+                        currencyFrom: $('#currencyFrom').val(),
+                        currencyTo: $('#currencyTo').val(),
+                        range: $('input[name=currencyRange]:checked').val(),
+                    },
+
+                    success: function(data) {
+                        //alert(data);
+                    }
+                });
+            }
+        }
+    }
+
+
+
+    $.chart.currencyList();
+})

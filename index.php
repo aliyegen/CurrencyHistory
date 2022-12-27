@@ -11,12 +11,14 @@
                         <div class="row">
                             <div class="col-6">
                                 <select id="currencyFrom" class="form-select m-3" aria-label="Select Source Currency">
-                                    <option>Select source currency</option>
+                                    <option selected>Select source currency</option>
+                                    <option>USD</option>
                                 </select>
                             </div>
                             <div class="col-6">
-                                <select id="currencyTo" class="form-select m-3" aria-label="Select Target Currency">
-                                    <option>Select target currency</option>
+                                <select id="currencyTo" class="form-select m-3" aria-label="Select Target Currency" onchange="$.chart.sendReq();">
+                                    <option selected>Select target currency</option>
+                                    
                                 </select>
                             </div>
                         </div>                        
@@ -27,13 +29,13 @@
                         <div id="currencyHistoryChart"><div id="selectMessage">Select currency</div></div>
                     </div>
                     <div class="col-12">
-                        <input class="btn-check" type="radio" name="currencyRange" id="radioDay" value="day">
+                        <input class="btn-check" type="radio" name="currencyRange" id="radioDay" value="1" onchange="$.chart.sendReq();" checked>
                         <label class="btn btn-outline-success" for="radioDay">1D</label>
 
-                        <input class="btn-check" type="radio" name="currencyRange" id="radioWeek" value="day">
+                        <input class="btn-check" type="radio" name="currencyRange" id="radioWeek" value="7" onchange="$.chart.sendReq();">
                         <label class="btn btn-outline-success" for="radioWeek">1W</label>
 
-                        <input class="btn-check" type="radio" name="currencyRange" id="radioMonth" value="day">
+                        <input class="btn-check" type="radio" name="currencyRange" id="radioMonth" value="30" onchange="$.chart.sendReq();">
                         <label class="btn btn-outline-success" for="radioMonth">1M</label>
                     </div>
                     
