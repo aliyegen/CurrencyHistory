@@ -1,0 +1,11 @@
+#selectMessage {
+    width: 100%;
+    height: 346px;
+    justify-content: center;
+}
+
+#rangeSelect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,5 +1,5 @@
 <?php
-    $apiKey = '8fee5cb9426f4a4d94b7f33569e05426';
+    $apiKey = 'eb952a5f69004ae5a2565627fa38e7b2';
     $dataSet = array();
 
     $request = $_POST['request'];
@@ -18,8 +18,9 @@
         $base = $_POST['currencyFrom'];
         $targetCurrency = $_POST['currencyTo'];
         $range = intval($_POST['range']); //if selected range is 1D range is 1, else if selected day is 1W range is 7...
+        $col = 10;
 
-        for($i=1; $i<=5; $i++){  //I will show 5 values in the graph, so the loop will run 5 times
+        for($i=1; $i<=$col; $i++){  //I will show 5 values in the graph, so the loop will run 5 times
             //Subtract defined time range each loop from today's date 
             $date = date("Y-m-d", time() - ($i * $range) * (60 * 60 * 24));
 
